@@ -6,6 +6,8 @@
 import StandardTextObject from "./lib/StandardTextObject.js";
 import Renderer from "./lib/2DRenderer.js";
 import Standard2DFullScreenObject from "./lib/Standard2DFullScreenObject.js";
+import Aspect from "./lib/Aspect.js";
+import AspectSceneObject from "./lib/AspectSceneObject.js";
 
 async function init() {
   // Create a canvas tag
@@ -19,6 +21,9 @@ async function init() {
 
   await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/tiles/planks_greatwood.png"));
 
+  await renderer.appendSceneObject(new AspectSceneObject(renderer._device, renderer._canvasFormat, Aspect.MAGIC, [1,0,0,0,0.2,0.2]));
+
+  //await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/vignette.png"));
   let fps = '??';
   var fpsText = new StandardTextObject('fps: ' + fps);
   

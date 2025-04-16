@@ -29,17 +29,21 @@ struct VertexOutput {
 @vertex
 fn vertexMain(@builtin(vertex_index) vIdx: u32) -> VertexOutput {
   var pos = array<vec2f, 6>(
-    vec2f(-1, -1), vec2f(1, -1), vec2f(-1, 1),
-    vec2f(1, -1), vec2f(1, 1), vec2f(-1, 1)
+    vec2f(-2, -2), vec2f(2, -2), vec2f(-2, 2),
+    vec2f(2, -2), vec2f(2, 2), vec2f(-2, 2)
   );
   /*var texCoords = array<vec2f, 6>(
     vec2f(0, 1), vec2f(1, 1), vec2f(0, 0),
     vec2f(1, 1), vec2f(1, 0), vec2f(0, 0)
   );*/
-  let tileCount : f32 = 3.0;
-  var texCoords = array<vec2f, 6>(
+  let tileCount : f32 = 1.5;
+  /*var texCoords = array<vec2f, 6>(
     vec2f(0, tileCount), vec2f(tileCount, tileCount), vec2f(0, 0),
     vec2f(tileCount, tileCount), vec2f(tileCount, 0), vec2f(0, 0)
+  );*/
+  var texCoords = array<vec2f, 6>(
+    tileCount * pos[0], tileCount * pos[1], tileCount * pos[2],
+    tileCount * pos[3], tileCount * pos[4], tileCount * pos[5]
   );
   var out: VertexOutput;
   out.pos = vec4f(pos[vIdx], 0, 1);
