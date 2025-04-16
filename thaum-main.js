@@ -5,6 +5,7 @@
 // Firefox Nightly: sudo snap install firefox --channel=latext/edge or download from https://www.mozilla.org/en-US/firefox/channel/desktop/
 import StandardTextObject from "./lib/StandardTextObject.js";
 import Renderer from "./lib/2DRenderer.js";
+import Standard2DFullScreenObject from "./lib/Standard2DFullScreenObject.js";
 
 async function init() {
   // Create a canvas tag
@@ -15,6 +16,9 @@ async function init() {
   var renderer = new Renderer(canvasTag);
   await renderer.init();
   
+
+  await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/tiles/planks_greatwood.png"));
+
   let fps = '??';
   var fpsText = new StandardTextObject('fps: ' + fps);
   
