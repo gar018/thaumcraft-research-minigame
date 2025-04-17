@@ -22,8 +22,7 @@ async function init() {
   
 
   await renderer.appendSceneObject(new Standard2DFullScreenObject("/assets/tiles/planks_greatwood.png"));
-
-  await renderer.appendSceneObject(new AspectSceneObject(Aspect.TOOL, [1,0,0,0,0.2,0.2]));
+  await renderer.appendSceneObject(new AspectSceneObject(Aspect.ORDER, [1,0,0,0,0.2,0.2]));
 
   //await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/vignette.png"));
   let fps = '??';
