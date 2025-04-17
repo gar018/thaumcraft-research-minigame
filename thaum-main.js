@@ -8,6 +8,7 @@ import Renderer from "./lib/2DRenderer.js";
 import Standard2DFullScreenObject from "./lib/Standard2DFullScreenObject.js";
 import Aspect from "./lib/Aspect.js";
 import AspectSceneObject from "./lib/AspectSceneObject.js";
+import SceneObject from "./lib/SceneObject.js"
 
 async function init() {
   // Create a canvas tag
@@ -17,11 +18,12 @@ async function init() {
   
   var renderer = new Renderer(canvasTag);
   await renderer.init();
+  await SceneObject.setRendererInfo(renderer._device, renderer._canvasFormat); //all scene objects will now adopt these automatically
   
 
-  await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/tiles/planks_greatwood.png"));
+  await renderer.appendSceneObject(new Standard2DFullScreenObject("/assets/tiles/planks_greatwood.png"));
 
-  await renderer.appendSceneObject(new AspectSceneObject(renderer._device, renderer._canvasFormat, Aspect.TOOL, [1,0,0,0,0.2,0.2]));
+  await renderer.appendSceneObject(new AspectSceneObject(Aspect.TOOL, [1,0,0,0,0.2,0.2]));
 
   //await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/vignette.png"));
   let fps = '??';
