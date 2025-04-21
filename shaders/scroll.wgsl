@@ -1,5 +1,3 @@
-
-
 // struct to store a multi vector
 struct MultiVector {
   s: f32,
@@ -59,14 +57,15 @@ struct VertexOutput {
 fn vertexMain(@builtin(vertex_index) vIdx: u32) -> VertexOutput {
 
   //let scale : f32 = 0.2;
-
   var quadPoints = array<vec2f, 6>(
     vec2f(-1, -1), vec2f(1, -1), vec2f(-1, 1),
     vec2f(1, 1), vec2f(1, -1), vec2f(-1, 1)
   );
+
+  let r : f32 = 0.585; // this is a constant to help properly center the image onto the screen. do NOT touch unless you know what you are (and it is) doing!
   var texCoords = array<vec2f, 6>(
-    vec2f(0, 1), vec2f(1, 1), vec2f(0, 0),
-    vec2f(1, 0), vec2f(1, 1), vec2f(0, 0)
+    r * vec2f(0, 1), r * vec2f(1, 1), r * vec2f(0, 0),
+    r * vec2f(1, 0), r * vec2f(1, 1), r * vec2f(0, 0)
   );
 
   var out: VertexOutput;
@@ -78,7 +77,7 @@ fn vertexMain(@builtin(vertex_index) vIdx: u32) -> VertexOutput {
 
 @group(0) @binding(0) var inTexture: texture_2d<f32>;
 @group(0) @binding(1) var inSampler: sampler;
-@group(0) @binding(3) var<uniform> color: vec4f;
+//@group(0) @binding(3) var<uniform> color: vec4f;
 
 @fragment
 fn fragmentMain(@location(0) texCoords: vec2f) -> @location(0) vec4f {
@@ -86,5 +85,5 @@ fn fragmentMain(@location(0) texCoords: vec2f) -> @location(0) vec4f {
   //if (tex.w < 0.9) {
    // discard;
   //}
-  return color * textureSample(inTexture, inSampler, texCoords);
+  return tex;
 }

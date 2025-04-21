@@ -9,6 +9,7 @@ import Standard2DFullScreenObject from "./lib/Standard2DFullScreenObject.js";
 import Aspect from "./lib/Aspect.js";
 import AspectSceneObject from "./lib/AspectSceneObject.js";
 import SceneObject from "./lib/SceneObject.js"
+import ScrollObject from "./lib/ScrollObject.js";
 
 async function init() {
   // Create a canvas tag
@@ -22,6 +23,8 @@ async function init() {
   
 
   await renderer.appendSceneObject(new Standard2DFullScreenObject("/assets/tiles/planks_greatwood.png"));
+
+  await renderer.appendSceneObject(new ScrollObject(0, [1,0,0,0,1,1]));
   await renderer.appendSceneObject(new AspectSceneObject(Aspect.FIRE, [1,0,0,0,0.2,0.2]));
 
   //await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/vignette.png"));
