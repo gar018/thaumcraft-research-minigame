@@ -89,11 +89,14 @@ fn vertexMain(@builtin(vertex_index) vIdx: u32) -> VertexOutput {
 @group(0) @binding(4) var<uniform> parameters: Parameter;
 
 @fragment
-fn fragmentMain(@location(0) texCoords: vec2f) -> @location(0) vec4f {
+fn fragmentMain(@builtin(position) pos: vec4f, @location(0) texCoords: vec2f) -> @location(0) vec4f {
   let selected = f32(parameters.isHovering);
+  let x = texCoords[0] - 0.5;
+  let y = texCoords[1] - 0.5;
+  let selectionGlow = x * x * x * x + y * y * y * y;
   let tex = textureSample(inTexture, inSampler, texCoords);
   //if (tex.w < 0.9) {
    // discard;
   //}
-  return color * textureSample(inTexture, inSampler, texCoords) + selected * vec4f(0.5, 0.5, 0.5, 0.5);
+  return color * textureSample(inTexture, inSampler, texCoords) + color * selected * 25.0 * selectionGlow * vec4f(0.5, 0.5, 0.5, 0.5);
 }
