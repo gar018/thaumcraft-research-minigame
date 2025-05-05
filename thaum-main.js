@@ -28,7 +28,7 @@ async function init() {
 
   await renderer.appendSceneObject(new Standard2DFullScreenObject("/assets/tiles/planks_greatwood.png"));
 
-  await renderer.appendSceneObject(new ScrollObject(0, [1,0,0.15,0,.92,.92]));
+  await renderer.appendSceneObject(new ScrollObject(0, [1,0,0.18,0,.92,.92]));
   //await renderer.appendSceneObject(new AspectSceneObject(Aspect.FIRE, [1,0,0,0,0.2,0.2]));
   var entry = 0;
   let cols = 8;
@@ -41,7 +41,8 @@ async function init() {
     entry++;
   });
   await interactor.init();
-  var tooltip = new TooltipTextObject("Hello World");
+  //var nameTooltip = new TooltipTextObject("Hello World",100);
+  //var componentsTooltip = new TooltipTextObject("Another thing + Another Thing",60, "35px Times New Roman", "grey");
 
   //await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/vignette.png"));
   let fps = '??';
