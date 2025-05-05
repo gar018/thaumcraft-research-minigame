@@ -5,27 +5,43 @@
 // Firefox Nightly: sudo snap install firefox --channel=latext/edge or download from https://www.mozilla.org/en-US/firefox/channel/desktop/
 import StandardTextObject from "./lib/StandardTextObject.js";
 import Renderer from "./lib/2DRenderer.js";
+import ScreenInterface from "./lib/ScreenInterface.js";
 import Standard2DFullScreenObject from "./lib/Standard2DFullScreenObject.js";
 import Aspect from "./lib/Aspect.js";
 import AspectSceneObject from "./lib/AspectSceneObject.js";
 import SceneObject from "./lib/SceneObject.js"
 import ScrollObject from "./lib/ScrollObject.js";
+import TooltipTextObject from "./lib/TooltipTextObject.js";
 
 async function init() {
   // Create a canvas tag
   const canvasTag = document.createElement('canvas');
   canvasTag.id = "renderCanvas";
   document.body.appendChild(canvasTag);
+  canvasTag.hidden = true;
   
   var renderer = new Renderer(canvasTag);
+  var interactor = new ScreenInterface(canvasTag);
   await renderer.init();
+  //await interactor.init();
   await SceneObject.setRendererInfo(renderer._device, renderer._canvasFormat); //all scene objects will now adopt these automatically
-  
 
   await renderer.appendSceneObject(new Standard2DFullScreenObject("/assets/tiles/planks_greatwood.png"));
 
-  await renderer.appendSceneObject(new ScrollObject(0, [1,0,0,0,1,1]));
-  await renderer.appendSceneObject(new AspectSceneObject(Aspect.FIRE, [1,0,0,0,0.2,0.2]));
+  await renderer.appendSceneObject(new ScrollObject(0, [1,0,0.15,0,.92,.92]));
+  //await renderer.appendSceneObject(new AspectSceneObject(Aspect.FIRE, [1,0,0,0,0.2,0.2]));
+  var entry = 0;
+  let cols = 8;
+  await Object.entries(Aspect.aspectDict).forEach(([name, aspect]) => {
+    let x = 1.0 - 0.29 * (entry % cols);
+    let y = 1.2 - 0.35 * Math.floor(entry / cols);
+    let aspectObj = new AspectSceneObject(aspect, [0.25,0,y,x,0.085,0.085]);
+    renderer.appendSceneObject(aspectObj);
+    interactor.appendSceneObject(aspectObj);
+    entry++;
+  });
+  await interactor.init();
+  var tooltip = new TooltipTextObject("Hello World");
 
   //await renderer.appendSceneObject(new Standard2DFullScreenObject(renderer._device, renderer._canvasFormat, "/assets/vignette.png"));
   let fps = '??';

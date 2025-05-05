@@ -52,6 +52,13 @@ struct VertexOutput {
   @location(0) texCoords: vec2f
 };
 
+struct Parameter {
+  isHovering: i32,
+  parameter2: i32,
+  parameter3: i32,
+  parameter4: i32
+}
+
 
 @group(0) @binding(2) var<uniform> pose: Pose;
 
@@ -79,12 +86,14 @@ fn vertexMain(@builtin(vertex_index) vIdx: u32) -> VertexOutput {
 @group(0) @binding(0) var inTexture: texture_2d<f32>;
 @group(0) @binding(1) var inSampler: sampler;
 @group(0) @binding(3) var<uniform> color: vec4f;
+@group(0) @binding(4) var<uniform> parameters: Parameter;
 
 @fragment
 fn fragmentMain(@location(0) texCoords: vec2f) -> @location(0) vec4f {
+  let selected = f32(parameters.isHovering);
   let tex = textureSample(inTexture, inSampler, texCoords);
   //if (tex.w < 0.9) {
    // discard;
   //}
-  return color * textureSample(inTexture, inSampler, texCoords);
+  return color * textureSample(inTexture, inSampler, texCoords) + selected * vec4f(0.5, 0.5, 0.5, 0.5);
 }
