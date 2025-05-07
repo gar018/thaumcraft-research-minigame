@@ -25,7 +25,7 @@ async function init() {
   //await interactor.init();
   await SceneObject.setRendererInfo(renderer._device, renderer._canvasFormat); //all scene objects will now adopt these automatically
 
-  await renderer.appendSceneObject(new Standard2DFullScreenObject("/assets/tiles/planks_greatwood.png"));
+  await renderer.appendSceneObject(new Standard2DFullScreenObject("./assets/tiles/planks_greatwood.png"));
 
   await renderer.appendSceneObject(new ScrollObject(0, [1,0,0.18,0,.92,.92]));
   //await renderer.appendSceneObject(new AspectSceneObject(Aspect.FIRE, [1,0,0,0,0.2,0.2]));
