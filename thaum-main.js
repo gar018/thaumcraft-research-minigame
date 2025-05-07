@@ -11,7 +11,6 @@ import Aspect from "./lib/Aspect.js";
 import AspectSceneObject from "./lib/AspectSceneObject.js";
 import SceneObject from "./lib/SceneObject.js"
 import ScrollObject from "./lib/ScrollObject.js";
-import TooltipTextObject from "./lib/TooltipTextObject.js";
 
 async function init() {
   // Create a canvas tag
