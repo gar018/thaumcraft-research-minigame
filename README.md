@@ -12,9 +12,9 @@ Thaumcraft 4 is a Minecraft mod created by [Azanor](https://github.com/Azanor). 
 
 In this minigame you are tasked with completing a puzzle within a scroll provided to you by your quest book in-game. The puzzle asks you to connect two or more elements known as ‘aspects’ together by creating a sequence of aspects that share a common aspect between each adjacent link. In the reference image seen above, the scroll you are tasked with asks to link the ‘Lux’ aspect (the bottom left candle icon) with the ‘Ignis’ aspect (the top right flame icon). It is important to note that Ignis and ‘Aer’ (the swirling icon) are primal aspects. These aspects are like primary colors, and are not the result of two other colors/aspects. Lux, however, is a compound aspect of Ignis and Aer, similar to the idea that orange is a mix of red and yellow. Each connected aspect has a relationship to each other. Reading the scroll from left to right: Lux is composed of Ignis, Ignis comprises Lux, Lux is composed of Aer, Aer comprises Lux, and finally Lux is composed of Ignis.
 
-## Demo Video
+## Demo Video + Acknowledgements
 
-<iframe width="560" height="315" src="https://youtu.be/U_geih9DrvA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[Link to Demo Video](https://youtu.be/U_geih9DrvA)
 
 Icons are from [https://game-icons.net](https://game-icons.net).
 
